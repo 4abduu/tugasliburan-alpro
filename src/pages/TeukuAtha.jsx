@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import profileImg from '../assets/profile.jpg';
 
 const Cloud = (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>;
 const ChevronDown = (p) => <svg {...p} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m6 9 6 6 6-6"/></svg>;
@@ -256,13 +257,11 @@ function AboutSection() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="flex-shrink-0"
         >
-          <motion.div
+           <motion.div
             whileHover={{ scale: 1.05 }}
             className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-1"
           >
-            <div className="w-full h-full rounded-full bg-[#1e1152] flex items-center justify-center">
-              <span className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#60a5fa]/50">T</span>
-            </div>
+            <img src={profileImg} alt="Teuku Atha" className="w-full h-full rounded-full object-cover" />
           </motion.div>
         </motion.div>
 
@@ -328,9 +327,9 @@ function ContactSection() {
 
   const socialLinks = [
     { name: 'Github', icon: GithubIcon, url: 'https://github.com/Atha112', desc: 'github.com/teukuatha' },
-    { name: 'LinkedIn', icon: LinkedinIcon, url: '#', desc: 'linkedin.com/in/teukuatha' },
-    { name: 'Instagram', icon: InstagramIcon, url: '#', desc: '@teukuatha' },
-    { name: 'WhatsApp', icon: PhoneIcon, url: '#', desc: '+62 812-xxxx-xxxx' },
+    { name: 'LinkedIn', icon: LinkedinIcon, url: 'https://linkedin.com/in/teuku-atha-athaya-nafi-276505373', desc: 'linkedin.com/in/teuku-atha-athaya-nafi-276505373' },
+    { name: 'Instagram', icon: InstagramIcon, url: 'https://www.instagram.com/athnfio', desc: '@athnfio' },
+    { name: 'WhatsApp', icon: PhoneIcon, url: 'https://wa.me/6281385179438', desc: '+62 813-8517-9438' },
   ];
 
   return (
@@ -431,22 +430,31 @@ function Footer() {
 
 export default function TeukuAtha() {
   return (
-    <div
-      className="min-h-screen flex flex-col"
-      style={{
-        background: 'linear-gradient(180deg, #0f0b2e 0%, #1e1152 25%, #3b1f7e 50%, #7c3aed 75%, #a855f7 100%)',
-        backgroundAttachment: 'fixed',
-        color: '#ffffff',
-      }}
-    >
-      <Navbar />
-      <main className="flex-1">
-        <HeroSection />
-        <ToolsSection />
-        <AboutSection />
-        <ContactSection />
-      </main>
-      <Footer />
-    </div>
+    <>
+      <style>{`
+        #root {
+          width: 100% !important;
+          border-inline: none !important;
+          background: transparent !important;
+        }
+      `}</style>
+      <div
+        className="min-h-screen flex flex-col"
+        style={{
+          background: 'linear-gradient(180deg, #0f0b2e 0%, #1e1152 25%, #3b1f7e 50%, #7c3aed 75%, #a855f7 100%)',
+          backgroundAttachment: 'fixed',
+          color: '#ffffff',
+        }}
+      >
+        <Navbar />
+        <main className="flex-1">
+          <HeroSection />
+          <ToolsSection />
+          <AboutSection />
+          <ContactSection />
+        </main>
+        <Footer />
+      </div>
+    </>
   );
 }
