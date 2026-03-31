@@ -211,6 +211,91 @@ function HeroSection() {
   );
 }
 
+/* ── ABOUT ── */
+function AboutSection() {
+  const tags = ['Prodi : Teknologi Informasi', 'Kelas T2F', 'Domisili : Malang'];
+
+  return (
+    <section id="about" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+        <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="text-center mb-10 sm:mb-14"
+        style={{ 
+          color: '#60a5fa', 
+          fontSize: 'clamp(1.875rem, 5vw, 3.75rem)',
+          fontWeight: 800,
+        }}
+      >
+        About Me
+      </motion.h2>
+
+      <div className="flex flex-col lg:flex-row items-center lg:items-start gap-8 sm:gap-12">
+        {/* Profile Photo Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex-shrink-0"
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="w-40 h-40 sm:w-52 sm:h-52 md:w-60 md:h-60 rounded-full bg-gradient-to-br from-[#6366f1] to-[#a855f7] p-1"
+          >
+            <div className="w-full h-full rounded-full bg-[#1e1152] flex items-center justify-center">
+              <span className="text-5xl sm:text-6xl md:text-7xl font-bold text-[#60a5fa]/50">T</span>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Content */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="flex-1"
+        >
+          <div className="bg-[#1e1152]/60 backdrop-blur-sm rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#60a5fa] mb-4 sm:mb-6">
+              Hello, I'm{' '}
+              <span className="text-white">Teuku Atha Athaya Nafi</span>
+            </h3>
+            <p className="text-white/80 text-sm sm:text-base md:text-lg leading-relaxed mb-6 sm:mb-8 text-justify">
+              Saya orang yang sedang belajar di dunia teknologi informasi. Saya memiliki ketertarikan besar dalam
+              pengembangan teknologi, terutama dalam bidang cybersecurity. Untuk saat ini saya sedang mendalami berbagai teknologi seperti React,
+              JavaScript, Node.js, dan Tailwind CSS untuk membangun aplikasi web yang menarik dan fungsional. Saya
+              percaya bahwa teknologi dapat mengubah dunia menjadi lebih baik, dan saya ingin menjadi bagian dari
+              perubahan tersebut. Saya selalu senang mempelajari hal-hal baru pada dunia coding. Selain coding, saya juga aktif mengikuti komunitas developer yang diselenggarakan kampus dan berbagi
+              pengetahuan melalui berbagai platform. Tujuan saya adalah menjadi developer yang handal dan
+              berkontribusi pada proyek-proyek open source yang bermanfaat bagi banyak orang.
+            </p>
+
+            {/* Tags */}
+            <div className="flex flex-wrap gap-3">
+              {tags.map((tag, idx) => (
+                <motion.span
+                  key={tag}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.5 + idx * 0.15, duration: 0.4 }}
+                  className="bg-[#6366f1] hover:bg-[#7c3aed] text-white px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-colors"
+                >
+                  {tag}
+                </motion.span>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function TeukuAtha() {
   return (
     <div
@@ -225,6 +310,7 @@ export default function TeukuAtha() {
       <main className="flex-1">
         <HeroSection />
         <ToolsSection />
+        <AboutSection />
       </main>
     </div>
   );
