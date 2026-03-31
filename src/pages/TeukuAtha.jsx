@@ -60,6 +60,39 @@ function Navbar() {
   );
 }
 
+/* ── TYPEWRITER ── */
+function TypeWriter({ texts, speed = 80, deleteSpeed = 50, pauseDuration = 1500 }) {
+  const [displayText, setDisplayText] = useState('');
+  const phaseRef = useRef('typing');
+  const indexRef = useRef(0);
+  const timerRef = useRef();
+
+  useEffect(() => {
+    const tick = () => {
+      const idx = indexRef.current;
+      const currentText = texts[idx];
+      const phase = phaseRef.current;
+      if (phase === 'typing') {
+        if (displayText.length < currentText.length) { timerRef.current = setTimeout(() => setDisplayText(currentText.slice(0, displayText.length + 1)), speed); }
+        else { phaseRef.current = 'paused'; timerRef.current = setTimeout(tick, pauseDuration); }
+      } else if (phase === 'paused') { phaseRef.current = 'deleting'; timerRef.current = setTimeout(tick, 0); }
+      else if (phase === 'deleting') {
+        if (displayText.length > 0) { timerRef.current = setTimeout(() => setDisplayText(displayText.slice(0, -1)), deleteSpeed); }
+        else { phaseRef.current = 'switching'; timerRef.current = setTimeout(tick, 0); }
+      } else { indexRef.current = (idx + 1) % texts.length; phaseRef.current = 'typing'; timerRef.current = setTimeout(tick, 0); }
+    };
+    tick();
+    return () => { if (timerRef.current) clearTimeout(timerRef.current); };
+  }, [displayText, texts, speed, deleteSpeed, pauseDuration]);
+
+  return (
+    <span className="inline-flex items-center">
+      {displayText}
+      <motion.span animate={{ opacity: [1, 0] }} transition={{ repeat: Infinity, duration: 0.7, ease: 'steps(2)' }} className="ml-0.5 inline-block w-[3px] h-[1em] bg-[#60a5fa] align-middle" />
+    </span>
+  );
+}
+
 const techStack = ['React', 'Javascript', 'Node.js', 'Tailwind'];
 
 function HeroSection() {
@@ -81,9 +114,9 @@ function HeroSection() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="text-white/80 text-base sm:text-lg md:text-xl mb-3 sm:mb-4"
+          className="text-white/80 text-base sm:text-lg md:text-xl mb-3 sm:mb-4 h-7 sm:h-8 md:h-9 flex items-center justify-center"
         >
-          Tech Enthusiast / Technology Information Student
+          <TypeWriter texts={['Tech Enthusiast', 'Technology Information Student']} speed={80} deleteSpeed={45} pauseDuration={1500} />
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
