@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import fotoAbdu from '../abdu-foto-profil.jpg'
 import fotoAtha from '../foto-atha.jpg'
+import fotoIkhsan from '../foto-ikhsan.jpg'
 
 const teamMembers = [
   {
@@ -12,6 +13,13 @@ const teamMembers = [
     color: "from-blue-500 to-cyan-500",
   },
   {
+    name: "Muhammad Ikhsan Putra Abiasnyah",
+    role: "Anggota 2",
+    url: "/ikhsan-putra",
+    image: fotoIkhsan,
+    color: "from-emerald-500 to-teal-500",
+  },
+  {
     name: "Teuku Atha Athaya Nafi",
     role: "Anggota 3",
     url: "/teuku-atha-athaya-nafi",
@@ -19,7 +27,6 @@ const teamMembers = [
     color: "from-purple-500 to-pink-500",
   },
 ]
-
 function Dashboard() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 flex flex-col">
