@@ -5,6 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tugasprofilanggota</title>
+    <script>
+      (function() {
+        if (sessionStorage.redirect) {
+          var redirect = sessionStorage.redirect;
+          delete sessionStorage.redirect;
+          if (window.location.replace) {
+            window.location.replace(redirect);
+          } else {
+            window.location.href = redirect;
+          }
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
